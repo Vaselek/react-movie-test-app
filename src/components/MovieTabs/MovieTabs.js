@@ -1,12 +1,21 @@
 import React, {Fragment} from 'react';
-import {Paper, Tabs, Tab} from "@material-ui/core";
+import {Paper, Tabs, Tab, makeStyles} from "@material-ui/core";
 import {Route, Link} from "react-router-dom";
 
 
 const MovieTabs = () => {
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      marginBottom: theme.spacing(2)
+    }
+  }));
+
+  const classes = useStyles();
+
   return (
-    <Paper square>
+    <Paper square className={classes.root}>
         <Route
           path="/"
           render={({ location }) => (

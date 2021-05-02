@@ -1,0 +1,34 @@
+.movieCard {
+    position: relative;
+}
+
+.movieCardDetails {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid green;
+    border-radius: 3px;
+    padding: 25% 0;
+    opacity: 0%;
+}
+
+.movieCardDetails:hover,
+.movieCardDetailsWrapper:hover {
+    opacity: 90%;
+    color: white;
+}
+
+.movieCardDetailsWrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    background-color: black;
+    opacity: 0%;
+}
+

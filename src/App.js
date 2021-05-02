@@ -6,6 +6,7 @@ import MovieTabs from "./components/MovieTabs/MovieTabs";
 import MoviesSearch from "./components/MoviesSearch/MoviesSearch";
 import Movies from "./components/Movies/Movies";
 import Container from "@material-ui/core/Container/Container";
+import Movie from "./components/Movie/Movie";
 
 function App() {
   return (
@@ -31,6 +32,12 @@ function App() {
             path='/search'
             render={(props) => (
               <MoviesSearch {...props} trending={false} />
+            )}
+          />
+          <Route
+            path='/movies/:id'
+            render={(props) => (
+              <Movie {...props} />
             )}
           />
         </Switch>

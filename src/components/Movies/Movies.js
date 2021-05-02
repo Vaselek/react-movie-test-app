@@ -1,44 +1,26 @@
-import React, {useEffect,useCallback, useState} from 'react';
-import {get} from '../../api/httpRequests';
+import React from 'react';
 import MovieCard from "../MovieCard/MovieCard";
 import './Movies.css';
 import {useHistory} from 'react-router-dom';
+import useFetch from "../customHooks/useFetch";
+import FallbackComponent from "../FallbackComponent/FallbackComponent";
 
 const Movies = ({ trending }) => {
-
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(false);
-  const [isLoading, setLoading] = useState(true);
 
   let history = useHistory();
 
   const path = trending ? 'trending/all/day' : '/movie/popular';
+  const { payload: moviesPayload, status: fetchMoviesStatus, error: fetchMoviesError } = useFetch(path);
 
-  const fetchMovies = useCallback(async() => {
-    const response = await get(path);
-    if (response.isSuccess) {
-      const movies = response.payload.data.results;
-      setMovies(movies);
-      setError(null);
-    } else {
-      setError(response.payload)
-    }
-  }, [path]);
+  if (fetchMoviesStatus === 'loading') return <div>Loading...</div>;
+  if (fetchMoviesError) return <FallbackComponent/>;
 
-  useEffect(() => {
-    setLoading(true);
-    fetchMovies();
-    setLoading(false);
-  }, [fetchMovies]);
+  const movies = moviesPayload.results;
+  const movieList = movies.map(movie => <MovieCard key={movie.id} handleClick={()=>seeMovieDetails(movie.id)} movie={movie}/>);
 
   const seeMovieDetails = (id) => {
     history.push('/movies/' + id)
   };
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Sorry, something went wrong...</div>;
-
-  const movieList = movies.map(movie => <MovieCard handleClick={()=>seeMovieDetails(movie.id)} movie={movie}/>);
 
   return (
     <div className='moviesContainer'>

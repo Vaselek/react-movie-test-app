@@ -1,3 +1,13 @@
-.movieImg {
-    max-width: 100%;
+.castList {
+    margin: 0 -15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.scrolling-wrapper{
+    overflow-x: auto;
+}
+
+.movieWrapper .movieDetails {
+    border: none;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import './MovieCard.css';
-import {StyledRating} from './StyledRating';
+import {StyledRating} from '../utils/StyledRating';
 
 const MovieCard = ({movie, handleClick}) => {
   return (

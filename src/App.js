@@ -10,7 +10,7 @@ import Movie from "./components/Movie/Movie";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-dark text-light">
       <Navbar />
       <Container maxWidth='lg'>
         <MovieTabs />

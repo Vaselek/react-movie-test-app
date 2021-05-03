@@ -3,6 +3,9 @@ import {useParams} from 'react-router-dom';
 import {StyledRating} from "../utils/StyledRating";
 import FallbackComponent from "../FallbackComponent/FallbackComponent";
 import useFetch from "../customHooks/useFetch";
+import Cast from "../Cast/Cast";
+import './Movie.css';
+import {Card} from 'react-bootstrap';
 
 const Movie = () => {
 
@@ -24,17 +27,27 @@ const Movie = () => {
   const { cast } = castPayload;
 
   return (
-    <div className="container">
-      <div className="row">
+    <div className="container-fluid movieWrapper">
+      <div className="row pb-4">
         <div className="col-4">
           <img className='img-fluid' src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
         </div>
         <div className="col-8">
-          <h3>{movie.title}</h3>
-          <div>{ listGenres(movie.genres) }</div>
-          <StyledRating max={10} name="read-only" value={movie.vote_average} readOnly />
-          <div>{movie.overview}</div>
+          <Card className='movieDetails bg-dark'>
+            <Card.Body>
+              <Card.Title>{movie.title}</Card.Title>
+              <Card.Subtitle className='pb-1'>{ listGenres(movie.genres) }</Card.Subtitle>
+              <StyledRating max={10} name="read-only" value={movie.vote_average} readOnly />
+              <Card.Text>{movie.overview}</Card.Text>
+            </Card.Body>
+          </Card>
         </div>
+      </div>
+      <div className='row castList border-top border-secondary'>
+          <Card.Text className='pt-3'>Cast & crew</Card.Text>
+          <div className='scrolling-wrapper row flex-row flex-nowrap pb-4'>
+          <Cast cast={cast} />
+          </div>
       </div>
     </div>
   );

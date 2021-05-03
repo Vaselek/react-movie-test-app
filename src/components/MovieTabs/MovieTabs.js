@@ -27,8 +27,8 @@ const MovieTabs = () => {
                 aria-label="tabs"
                 centered
               >
-                <Tab label="Popular" value="/" component={Link} to="/" />
                 <Tab label="Trending" value="/trending" component={Link} to="/trending" />
+                <Tab label="Popular" value="/" component={Link} to="/" />
                 <Tab value="/search" label="Search" component={Link} to="/search" />
                 />
               </Tabs>

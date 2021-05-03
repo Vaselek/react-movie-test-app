@@ -5,11 +5,12 @@ const httpRequest = axios.create({
   baseURL: BASE_URL
 });
 
-export const get = async (path) => {
+export const get = async (path, query) => {
   let response = { isSuccess: true, payload: null };
   const apiKey = mockGetApiKeyFromServer();
+  let params = { query: query, 'api_key': apiKey };
   try {
-    response.payload = await httpRequest.get(path + '?api_key=' + apiKey);
+    response.payload = await httpRequest.get(path, { params: params });
     return response;
   } catch (e) {
     response.isSuccess = false;

@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {get} from "../../api/httpRequests";
 
-const useFetch = (path) => {
+const useFetch = (path, query) => {
 
   const [payload, setPayload] = useState(null);
   const [error, setError] = useState(false);
   const [status, setStatus] = useState('loading');
 
-  console.log('sjdlfjslfjlsjflsdjfldsj')
   useEffect(() => {
     if(!path) return;
 
     const fetch = async() => {
-      const response = await get(path);
+      const response = await get(path, query);
       if (response.isSuccess) {
         const payload = response.payload.data;
         setPayload(payload);
@@ -26,7 +25,7 @@ const useFetch = (path) => {
 
     fetch();
 
-  }, [path]);
+  }, [path, query]);
 
   return {
     status: status,

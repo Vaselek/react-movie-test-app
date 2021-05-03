@@ -5,12 +5,11 @@ import {useHistory} from 'react-router-dom';
 import useFetch from "../customHooks/useFetch";
 import FallbackComponent from "../FallbackComponent/FallbackComponent";
 
-const Movies = ({ trending }) => {
+const Movies = ({ urlPath, trending, query }) => {
 
   let history = useHistory();
 
-  const path = trending ? 'trending/all/day' : '/movie/popular';
-  const { payload: moviesPayload, status: fetchMoviesStatus, error: fetchMoviesError } = useFetch(path);
+  const { payload: moviesPayload, status: fetchMoviesStatus, error: fetchMoviesError } = useFetch(urlPath, query);
 
   if (fetchMoviesStatus === 'loading') return <div>Loading...</div>;
   if (fetchMoviesError) return <FallbackComponent/>;

@@ -10,7 +10,7 @@ import Movie from "./components/Movie/Movie";
 
 function App() {
   return (
-    <div className="App bg-dark text-light">
+    <div className="App bg-dark min-vh-100 text-light">
       <Navbar />
       <Container maxWidth='lg'>
         <MovieTabs />
@@ -19,13 +19,13 @@ function App() {
             path='/'
             exact={true}
             render={(props) => (
-              <Movies {...props} trending={false} />
+              <Movies {...props} urlPath={'/movie/popular'} trending={false} />
             )}
           />
           <Route
             path='/trending'
             render={(props) => (
-              <Movies {...props} trending={true} />
+              <Movies {...props} urlPath={'trending/all/day'} trending={true} />
             )}
           />
           <Route

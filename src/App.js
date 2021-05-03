@@ -7,6 +7,9 @@ import MoviesSearch from "./components/MoviesSearch/MoviesSearch";
 import Movies from "./components/Movies/Movies";
 import Container from "@material-ui/core/Container/Container";
 import Movie from "./components/Movie/Movie";
+import {ErrorBoundary} from 'react-error-boundary';
+import FallbackComponent from "./components/FallbackComponent/FallbackComponent";
+
 
 function App() {
   return (
@@ -14,33 +17,35 @@ function App() {
       <Navbar />
       <Container maxWidth='lg'>
         <MovieTabs />
-        <Switch>
-          <Route
-            path='/'
-            exact={true}
-            render={(props) => (
-              <Movies {...props} urlPath={'/movie/popular'} trending={false} />
-            )}
-          />
-          <Route
-            path='/trending'
-            render={(props) => (
-              <Movies {...props} urlPath={'trending/all/day'} trending={true} />
-            )}
-          />
-          <Route
-            path='/search'
-            render={(props) => (
-              <MoviesSearch {...props} trending={false} />
-            )}
-          />
-          <Route
-            path='/movies/:id'
-            render={(props) => (
-              <Movie {...props} />
-            )}
-          />
-        </Switch>
+        <ErrorBoundary FallbackComponent={FallbackComponent}>
+          <Switch>
+            <Route
+              path='/'
+              exact={true}
+              render={(props) => (
+                <Movies {...props} urlPath={'/movie/popular'} trending={false} />
+              )}
+            />
+            <Route
+              path='/trending'
+              render={(props) => (
+                <Movies {...props} urlPath={'trending/all/day'} trending={true} />
+              )}
+            />
+            <Route
+              path='/search'
+              render={(props) => (
+                <MoviesSearch {...props} trending={false} />
+              )}
+            />
+            <Route
+              path='/movies/:id'
+              render={(props) => (
+                <Movie {...props} />
+              )}
+            />
+          </Switch>
+        </ErrorBoundary>
       </Container>
     </div>
   );

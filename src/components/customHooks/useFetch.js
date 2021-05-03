@@ -16,7 +16,6 @@ const useFetch = (path, query) => {
         const payload = response.payload.data;
         setPayload(payload);
         setStatus('success')
-
       } else {
         setStatus('error');
         setError(response.payload);

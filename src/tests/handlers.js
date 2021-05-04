@@ -1,8 +1,14 @@
 import { rest } from 'msw';
-import { responseDataForMovie } from './responseData';
+import { responseDataForMovie, responseDataForCast } from './responseData';
 
 
 export const handlers = [
+  rest.get('*/movie/*/credits', (req, res, ctx) =>
+    res(
+      ctx.status(200),
+      ctx.json(responseDataForCast()),
+    ),
+  ),
   rest.get('*/movie/*', (req, res, ctx) =>
     res(
       ctx.status(200),

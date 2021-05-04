@@ -24,13 +24,13 @@ const Movie = () => {
   if (fetchMovieStatus === 'loading' || fetchCastStatus === 'loading') return <div>Loading...</div>;
   if (fetchMovieError || fetchCastError) return <FallbackComponent />;
 
-  const { cast } = castPayload;
+  const { cast } = castPayload || [];
 
   return (
     <div className="container-fluid movieWrapper">
       <div className="row pb-4">
         <div className="col-4">
-          <img className='img-fluid' src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
+          <img alt={`poster for ${movie.title}`} className='img-fluid' src={'https://image.tmdb.org/t/p/w500/' + movie.poster_path} />
         </div>
         <div className="col-8">
           <Card className='movieDetails bg-dark'>

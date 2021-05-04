@@ -5,7 +5,7 @@ const CastCard = ({item}) => {
 
   return (
     <Card className='col-2 m-1 bg-dark'>
-      <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
+      <Card.Img alt={`image of ${item.name}`} variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
     </Card>
   );
 };

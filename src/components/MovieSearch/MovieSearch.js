@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {Form, InputGroup, FormControl} from 'react-bootstrap';
 import SearchIcon from '@material-ui/icons/Search';
 import debounce from 'lodash.debounce';
@@ -6,29 +6,23 @@ import Movies from "../Movies/Movies";
 
 
 
-const MoviesSearch = () => {
+const MovieSearch = () => {
 
   const [query, setQuery] = useState('');
   const [value, setValue] = useState('');
 
   const path = '/search/movie';
 
-  const handleKeyUp = debounce((e) => {
-      setQuery(e.target.value);
-    },
-    1000
-  );
-
-  const handleKeyPress = (e) => {
+  const handleKeyDown = useCallback((e) => {
     if(e.key === 'Enter'){
       e.preventDefault();
-      setQuery(e.target.value);
+      setQuery(value);
     }
-  };
+  }, [setQuery, value]);
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     setValue(e.target.value);
-  };
+  }, [setValue]);
 
   return (
     <div>
@@ -41,7 +35,7 @@ const MoviesSearch = () => {
             <InputGroup.Prepend>
               <InputGroup.Text><SearchIcon/></InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl value={value} onKeyPress={handleKeyPress} onChange={handleChange} onKeyUp={handleKeyUp} id="inlineFormInputGroup" placeholder="Search" />
+          <FormControl value={value} onKeyDown={handleKeyDown} onChange={handleChange} id="inlineFormInputGroup" placeholder="Search" />
           </InputGroup>
         </Form.Row>
       </Form>
@@ -50,4 +44,4 @@ const MoviesSearch = () => {
   );
 };
 
-export default MoviesSearch;
+export default MovieSearch;

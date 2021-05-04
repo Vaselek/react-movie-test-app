@@ -14,7 +14,7 @@ const Movies = ({ urlPath, trending, query }) => {
   if (fetchMoviesStatus === 'loading') return <div>Loading...</div>;
   if (fetchMoviesError) return <FallbackComponent/>;
 
-  const movies = moviesPayload.results;
+  const movies = moviesPayload.results || [];
   const movieList = movies.map(movie => <MovieCard key={movie.id} handleClick={()=>seeMovieDetails(movie.id)} movie={movie}/>);
 
   const seeMovieDetails = (id) => {

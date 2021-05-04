@@ -2,7 +2,7 @@ export const responseDataForMovie = () => {
   return {
     id: 1,
     poster_path: 'poster_path.jpg',
-    title: 'Croods',
+    title: 'The Croods: A New Age',
     vote_average: 5,
     overview: 'This is movie description',
     genres: [{id: 1, name: 'Fantasy'}]

@@ -15,6 +15,16 @@ export const handlers = [
       ctx.json(responseDataForMovie()),
     ),
   ),
+  rest.get('*/search/*', (req, res, ctx) =>
+     res(
+      ctx.status(200),
+      ctx.json({
+        results: [
+          responseDataForMovie()
+        ]
+      })
+    )
+  ),
 ];
 
 export const defaultHandlers = [

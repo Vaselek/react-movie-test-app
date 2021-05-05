@@ -14,7 +14,7 @@ const MovieSearchInput = ({onChange}) => {
 
       return () => clearTimeout(handler)
     },
-    [value]
+    [value, onChange]
   );
 
   const handleChange = useCallback((e) => {

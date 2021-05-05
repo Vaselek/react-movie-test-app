@@ -5,11 +5,11 @@ import React from "react";
 import MovieTabs from "./components/MovieTabs/MovieTabs";
 import MovieSearchPage from "./components/MovieSearchPage/MovieSearchPage";
 import Container from "@material-ui/core/Container/Container";
-import Movie from "./components/Movie/Movie";
 import {ErrorBoundary} from 'react-error-boundary';
 import FallbackComponent from "./components/FallbackComponent/FallbackComponent";
 import TrendingMoviesPage from "./components/TrendingMoviesPage/TrendingMoviesPage";
 import PopularMoviesPage from "./components/PopularMoviesPage/PopularMoviesPage";
+import MoviePage from "./components/MoviePage/MoviePage";
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
             <Route
               path='/movies/:id'
               render={(props) => (
-                <Movie {...props} />
+                <MoviePage {...props} />
               )}
             />
           </Switch>

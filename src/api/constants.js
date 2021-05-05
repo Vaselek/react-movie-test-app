@@ -5,3 +5,7 @@ export const TRENDING_MOVIES_PATH = 'trending/all/day';
 export const POPULAR_MOVIES_PATH = '/movie/popular';
 
 export const SEARCH_MOVIE_PATH = '/search/movie';
+
+export const generatePathForMovie = movieId => `movie/${movieId}`;
+
+export const generatePathForCast = movieId => `/movie/${movieId}/credits`;

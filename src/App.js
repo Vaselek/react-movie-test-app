@@ -3,12 +3,13 @@ import Navbar from "./components/Navbar/Navbar";
 import {Switch, Route} from "react-router-dom";
 import React from "react";
 import MovieTabs from "./components/MovieTabs/MovieTabs";
-import MoviesSearch from "./components/MoviesSearch/MoviesSearch";
-import Movies from "./components/Movies/Movies";
+import MovieSearchPage from "./components/MovieSearchPage/MovieSearchPage";
 import Container from "@material-ui/core/Container/Container";
 import Movie from "./components/Movie/Movie";
 import {ErrorBoundary} from 'react-error-boundary';
 import FallbackComponent from "./components/FallbackComponent/FallbackComponent";
+import TrendingMoviesPage from "./components/TrendingMoviesPage/TrendingMoviesPage";
+import PopularMoviesPage from "./components/PopularMoviesPage/PopularMoviesPage";
 
 
 function App() {
@@ -23,19 +24,19 @@ function App() {
               path='/'
               exact={true}
               render={(props) => (
-                <Movies {...props} urlPath={'/movie/popular'} trending={false} />
+                <PopularMoviesPage {...props} />
               )}
             />
             <Route
               path='/trending'
               render={(props) => (
-                <Movies {...props} urlPath={'trending/all/day'} trending={true} />
+                <TrendingMoviesPage {...props} />
               )}
             />
             <Route
               path='/search'
               render={(props) => (
-                <MoviesSearch {...props} trending={false} />
+                <MovieSearchPage {...props} />
               )}
             />
             <Route

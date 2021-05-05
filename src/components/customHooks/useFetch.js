@@ -9,7 +9,7 @@ const useFetch = (path, query) => {
 
   useEffect(() => {
     if(!path) return;
-
+    if(query === '') return;
     const fetch = async() => {
       const response = await get(path, query);
       if (response.isSuccess) {

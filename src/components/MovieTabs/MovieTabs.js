@@ -8,11 +8,40 @@ const MovieTabs = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
+      backgroundColor: theme.palette.background.paper,
+
     }
   }));
 
   const classes = useStyles();
+
+  const tabItems = [
+    {
+      label: 'Trending',
+      value: '/trending',
+      path: '/trending'
+    },
+    {
+      label: 'Popular',
+      value: '/',
+      path: '/'
+    },
+    {
+      label: 'Search',
+      value: '/search',
+      path: '/search'
+    }
+  ];
+
+  const noCorrespondingTabFor = (path) => {
+    return !tabItems.filter(tab => tab.path === path).length > 0;
+  };
+
+  const setValue = (path) => {
+    if (noCorrespondingTabFor(path)) return false;
+    return path
+  };
 
   return (
     <Paper square className={classes.root}>
@@ -21,15 +50,14 @@ const MovieTabs = () => {
           render={({ location }) => (
             <Fragment>
               <Tabs
-                value={location.pathname}
+                value={setValue(location.pathname)}
                 indicatorColor="primary"
                 textColor="primary"
                 aria-label="tabs"
                 centered
+                style={{ textDecoration: 'none' }}
               >
-                <Tab label="Trending" value="/trending" component={Link} to="/trending" />
-                <Tab label="Popular" value="/" component={Link} to="/" />
-                <Tab value="/search" label="Search" component={Link} to="/search" />
+                {tabItems.map(tab => <Tab style={{ textDecoration: 'none' }} label={tab.label} value={tab.value} component={Link} to={tab.path} />)}
                 />
               </Tabs>
             </Fragment>

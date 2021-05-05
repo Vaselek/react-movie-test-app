@@ -8,10 +8,12 @@ const useFetch = (path, query) => {
   const [status, setStatus] = useState('loading');
 
   useEffect(() => {
+    let isCancelled = false;
     if(!path) return;
     if(query === '') return;
     const fetch = async() => {
       const response = await get(path, query);
+      if (isCancelled) return;
       if (response.isSuccess) {
         const payload = response.payload.data;
         setPayload(payload);
@@ -23,6 +25,10 @@ const useFetch = (path, query) => {
     };
 
     fetch();
+
+    return () => {
+      isCancelled = true;
+    };
 
   }, [path, query]);
 

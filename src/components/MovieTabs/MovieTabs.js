@@ -19,13 +19,13 @@ const MovieTabs = () => {
   const tabItems = [
     {
       label: 'Trending',
-      value: '/trending',
-      path: '/trending'
+      value: '/',
+      path: '/'
     },
     {
       label: 'Popular',
-      value: '/',
-      path: '/'
+      value: '/popular',
+      path: '/popular'
     },
     {
       label: 'Search',
@@ -57,7 +57,7 @@ const MovieTabs = () => {
                 centered
                 style={{ textDecoration: 'none' }}
               >
-                {tabItems.map(tab => <Tab style={{ textDecoration: 'none' }} label={tab.label} value={tab.value} component={Link} to={tab.path} />)}
+                {tabItems.map(tab => <Tab style={{ textDecoration: 'none' }} key={tab.value} label={tab.label} value={tab.value} component={Link} to={tab.path} />)}
                 />
               </Tabs>
             </Fragment>

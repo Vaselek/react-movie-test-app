@@ -24,13 +24,13 @@ function App() {
               path='/'
               exact={true}
               render={(props) => (
-                <PopularMoviesPage {...props} />
+                <TrendingMoviesPage{...props} />
               )}
             />
             <Route
-              path='/trending'
+              path='/popular'
               render={(props) => (
-                <TrendingMoviesPage {...props} />
+                <PopularMoviesPage {...props} />
               )}
             />
             <Route

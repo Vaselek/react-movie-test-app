@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import MoviePage from '../MoviePage/MoviePage';
+import MoviePage from './MoviePage';
 import { server } from '../../tests/mswServer';
 import {responseDataForMovie, responseDataForCast} from '../../tests/responseData';
 

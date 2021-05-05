@@ -1,5 +1,10 @@
 import { rest } from 'msw';
-import { responseDataForMovie, responseDataForCast } from './responseData';
+import {
+  responseDataForMovie,
+  responseDataForCast,
+  responseDataForTrendingMovie,
+  responseDataForPopularMovie
+} from './responseData';
 
 
 export const handlers = [
@@ -9,18 +14,38 @@ export const handlers = [
       ctx.json(responseDataForCast()),
     ),
   ),
+  rest.get('*/movie/popular', (req, res, ctx) =>
+    res(
+      ctx.status(200),
+      ctx.json({
+        results: [
+          responseDataForPopularMovie()
+        ]
+      })
+    )
+  ),
   rest.get('*/movie/*', (req, res, ctx) =>
     res(
       ctx.status(200),
       ctx.json(responseDataForMovie()),
     ),
   ),
-  rest.get('*/search/*', (req, res, ctx) =>
+  rest.get('*/search/movie*', (req, res, ctx) =>
      res(
       ctx.status(200),
       ctx.json({
         results: [
           responseDataForMovie()
+        ]
+      })
+    )
+  ),
+  rest.get('*/trending/all/day', (req, res, ctx) =>
+     res(
+      ctx.status(200),
+      ctx.json({
+        results: [
+          responseDataForTrendingMovie()
         ]
       })
     )
